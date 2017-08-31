@@ -8,8 +8,8 @@
   color: black;
 }
 .myimagesize{
-  width: 335px;
-  height: 515px;
+  width: 300px;
+  height: 150px;
 }
 @media only screen and (max-width: 500px) {
   .entry-title{
