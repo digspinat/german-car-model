@@ -32,14 +32,6 @@
 <div class="pure-menu pure-menu-horizontal pure-menu-scrollable myanothermenu">
     <ul class="pure-menu-list">
         <!-- <li class="pure-menu-item mylink"><a href="#" class="pure-menu-link">Home</a></li> -->
-        {{ $url := "/data/bmwcsv.csv" }}
-        {{ $sep := "," }}
-
-        {{ range $i, $r := getCSV $sep $url }}
-          {{ if eq $i 0 }}{{ else }}
-
-          {{ end }}
-        {{ end }}
 
         {{ range .Site.Menus.main }}
         {{ if .HasChildren }}
