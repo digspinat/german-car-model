@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Manuals on German Car Model</title>
+    <link>https://german.netlify.com/manual/</link>
+    <description>Recent content in Manuals on German Car Model</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>All rights reserved.</copyright>
+    
+	<atom:link href="https://german.netlify.com/manual/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>1993 - BMW 8-Series (E31) - 840i - Electrical Troubleshooting Manual</title>
+      <link>https://german.netlify.com/manual/12272/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://german.netlify.com/manual/12272/</guid>
+      <description>xxxx</description>
+    </item>
+    
+    <item>
+      <title>1994 - BMW 8-Series (E31) - 840i - Electrical Troubleshooting Manual</title>
+      <link>https://german.netlify.com/manual/12273/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://german.netlify.com/manual/12273/</guid>
+      <description>Xxxx 1994 - BMW 8-Series (E31) - 840i - Manual Pemecahan Masalah Listrik</description>
+    </item>
+    
+    <item>
+      <title>6-Series (E24) 1975-1989</title>
+      <link>https://german.netlify.com/manual/12274/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://german.netlify.com/manual/12274/</guid>
+      <description>Desc 6-Series (E24) 1975-1989</description>
+    </item>
+    
+    <item>
+      <title>6-Series Coupé (E63) 2003-2011</title>
+      <link>https://german.netlify.com/manual/12275/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://german.netlify.com/manual/12275/</guid>
+      <description>6-Series Coupé (E63) 2003-2011</description>
+    </item>
+    
+    <item>
+      <title>Golf I hatchback (A1 Typ 17) 1974-1983</title>
+      <link>https://german.netlify.com/manual/15658/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://german.netlify.com/manual/15658/</guid>
+      <description>gggGolf I hatchback (A1 Typ 17) 1974-1983 decs</description>
+    </item>
+    
+  </channel>
+</rss>

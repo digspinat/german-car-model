@@ -1,0 +1,48 @@
+<!-- Menu toggle -->
+<a href="#menu" id="menuLink" class="menu-link" style="background:black;">
+  <!-- Hamburger icon -->
+  <i class="fa fa-bars fa-3x" style="color:white;" aria-hidden="true"></i>
+</a>
+<div id="menu">
+
+  {{ partial "brand.html" . }}
+
+  <div class="pure-menu">
+    <ul class="pure-menu-list">
+      {{ range .Site.Menus.main }}
+      {{ if .HasChildren }}
+        <li class="pure-menu-item pure-menu-has-children">
+          <a class="pure-menu-link" href="#">{{ .Pre }}{{ .Name }}</a>
+          <ul class="pure-menu-children">
+            {{ range .Children }}
+            <li class="pure-menu-item">
+              <a href="{{ .URL }}">{{ .Name }}</a>
+            </li>
+            {{ end }}
+          </ul>
+        </li>
+      {{else}}
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="{{ .URL }}">{{ .Pre }}{{ .Name }}</a>
+      {{end}}
+        </li>
+      {{end}}
+
+      {{ range (where .Site.Pages "Section" "landpage") }}
+        {{ if eq .Title "Landpages" }}
+
+        {{else}}
+            <li class="pure-menu-item">
+              <a class="pure-menu-link" href="{{ .Permalink }}">{{ .Title }}</a>
+            </li>
+        {{end}}
+      {{ end }}
+    </ul>
+  </div>
+  {{ if eq .Title "Product" }}
+    {{ partial "filter.html" . }}
+  {{ end }}
+  <!-- {{ partial "social.html" . }}
+
+  {{ partial "copyright.html" . }} -->
+</div>

@@ -1,0 +1,101 @@
+baseurl = "https://german.netlify.com/"
+languageCode = "en-us"
+title = "German Car Model"
+author = "Yoshiharu Yamashita"
+copyright = "&copy; 2016. All rights reserved."
+canonifyurls = true
+paginate = 10
+DefaultContentLanguage = "en"
+
+[indexes]
+  tag = "tags"
+  topic = "topics"
+
+[params]
+  # Shown in the home page
+  subtitle = "German Car Model"
+  brand = "German Car<br>Model"
+  googleAnalytics = "Your Google Analytics tracking ID"
+  disqus = "Your Disqus shortname"
+  # CSS name for highlight.js
+  highlightjs = "androidstudio"
+  dateFormat = "02 Jan 2006, 15:04"
+
+  [languages.en]
+      weight = 10
+      languageName = "English"
+      languageCode = "en-us"
+      description = "Scriptor is a minimal Hugo blogging theme for writers."
+      message = "John Doe is a designer, speaker, and author. He is the Creative Director of Awesome Design studio, co-founder of magazine Camera and a coffee junkie."
+      copyright = "All rights reserved."
+
+      [[languages.en.menu.main]]
+          name = "Home"
+          pre = "<i class='fa fa-home fa-fw'></i>"
+          weight = 1
+          identifier = "home"
+          url = "/"
+      [[languages.en.menu.main]]
+          name = "Manual"
+          pre = "<i class='fa fa-list fa-fw'></i>"
+          weight = 2
+          identifier = "product"
+          url = "/product/"
+      [[languages.en.menu.main]]
+          name = "Category"
+          pre = "<i class='fa fa-list fa-fw'></i>"
+          weight = 3
+          identifier = "category"
+          url = "/category/"
+      # [[languages.en.menu.main]]
+      #     name = "Single Product"
+      #     pre = "<i class='fa fa-list fa-fw'></i>"
+      #     weight = 3
+      #     identifier = "singleproduct"
+      #     url = "/singleproduct/"
+
+
+  [languages.id]
+      weight = 20
+      languageName = "Indonesian"
+      languageCode = "de-de"
+      description = "Scriptor ist ein minimalistisches Hugo-Theme für Blogger."
+      message = "John Doe ist Designer, Referent und Autor. Er ist der Creative Director bei Awesome Design Studio, Mitbegründer des Magazines Camera und ein Kaffee-Junkie."
+      copyright = "Alle Rechte vorbehalten."
+      paginatePath = "seite"
+
+      [[languages.id.menu.main]]
+          name = "Rumah"
+          pre = "<i class='fa fa-home fa-fw'></i>"
+          weight = 1
+          identifier = "home"
+          url = "/id/"
+      [[languages.id.menu.main]]
+          name = "Manual"
+          pre = "<i class='fa fa-list fa-fw'></i>"
+          weight = 2
+          identifier = "product"
+          url = "/id/product/"
+      [[languages.id.menu.main]]
+          name = "Kategori"
+          pre = "<i class='fa fa-list fa-fw'></i>"
+          weight = 3
+          identifier = "category"
+          url = "/id/category/"
+      # [[languages.id.menu.main]]
+      #     name = "Produk tunggal"
+      #     pre = "<i class='fa fa-list fa-fw'></i>"
+      #     weight = 3
+      #     identifier = "singleproduct"
+      #     url = "/id/singleproduct/"
+
+
+[social]
+  # Link your social networking accouns to the side menu
+  # by entering your username or ID.
+  twitter = "*"
+  facebook = "*"
+  instagram = "*"
+  github = "yoshiharuyamashita"
+  stackoverflow = "*"
+  linkedin = "*"

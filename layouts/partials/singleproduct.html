@@ -1,0 +1,201 @@
+<br><br>
+<div class="pure-g">
+    <div class="pure-u-24-24">
+      <h2 class="product_title">{{ .Title }}</h2>
+    </div>
+</div>
+<div class="pure-g desktopview">
+    <div class="pure-u-7-24 hover01">
+      <figure id="imghover">
+        <img src="{{ .Params.image.url }}" class="productimage" alt="" />
+      </figure>
+    </div>
+    <div class="pure-u-10-24">
+      <div class="description">
+        <table class="table" width="30%">
+          <tr>
+            <th>Brand:</th>
+            <td>{{ .Params.brand }}</td>
+          </tr>
+          <tr>
+            <th>Series:</th>
+            <td>{{ .Params.series }}</td>
+          </tr>
+          <tr>
+            <th>Platform:</th>
+            <td>{{ .Params.platiform }}</td>
+          </tr>
+          <tr>
+            <th>Body Type:</th>
+            <td>{{ .Params.body_type }}</td>
+          </tr>
+          <tr>
+            <th>Engine:</th>
+            <td>{{ .Params.engine }}</td>
+          </tr>
+          <tr>
+            <th>Petrol/Deisel:</th>
+            <td>{{ .Params.fuel_type }}</td>
+          </tr>
+          <tr>
+            <th>Year:</th>
+            <td>{{ .Params.year }}</td>
+          </tr>
+          <tr>
+            <th>Manual Type:</th>
+            <td>{{ .Params.manual_type }}</td>
+          </tr>
+          <tr>
+            <th>Price:</th>
+            <td>{{ .Params.product_price }}</td>
+          </tr>
+        </table>
+      </div>
+    </div>
+    <div class="pure-u-7-24 my_rightbar">
+      <!-- <h2 class="rightbar_title">Description</h2>
+      <p class="rightbar_tagline">This Text is expmple text for some text.</p>
+      <section class="form">
+        <form class="" action="index.html" method="post">
+          <div class="form-group">
+            <label for="">Input 1:</label>
+            <input type="text" name="" class="form-control" placeholder="Input 1">
+          </div>
+          <div class="form-group">
+            <label for="">Input 2:</label>
+            <textarea name="" class="form-control mytextarea" placeholder="Input 2"></textarea>
+          </div>
+          <button type="submit" class="mybtn">Submit</button>
+        </form>
+      </section> -->
+    </div>
+</div>
+
+<div class="pure-g mobileviewsidebar">
+    <div class="pure-u-24-24">
+      <img src="{{ .Params.image.url }}" class="productimage" alt="" />
+    </div>
+</div>
+<div class="pure-g mobileviewsidebar">
+    <div class="pure-u-24-24">
+      <div class="description">
+        <table class="table" width="30%">
+          <tr>
+            <th>Brand:</th>
+            <td>{{ .Params.brand }}</td>
+          </tr>
+          <tr>
+            <th>Series:</th>
+            <td>{{ .Params.series }}</td>
+          </tr>
+          <tr>
+            <th>Platform:</th>
+            <td>{{ .Params.platiform }}</td>
+          </tr>
+          <tr>
+            <th>Body Type:</th>
+            <td>{{ .Params.body_type }}</td>
+          </tr>
+          <tr>
+            <th>Engine:</th>
+            <td>{{ .Params.engine }}</td>
+          </tr>
+          <tr>
+            <th>Petrol/Deisel:</th>
+            <td>{{ .Params.fuel_type }}</td>
+          </tr>
+          <tr>
+            <th>Year:</th>
+            <td>{{ .Params.year }}</td>
+          </tr>
+          <tr>
+            <th>Manual Type:</th>
+            <td>{{ .Params.manual_type }}</td>
+          </tr>
+          <tr>
+            <th>Price:</th>
+            <td>{{ .Params.product_price }}</td>
+          </tr>
+        </table>
+      </div>
+    </div>
+</div>
+<div class="pure-g mobileviewsidebar bgcolormy">
+    <div class="pure-u-24-24 my_rightbar1">
+      <!-- <h2 class="rightbar_title">Description</h2>
+      <p class="rightbar_tagline">This Text is expmple text for some text.</p>
+      <section class="form">
+        <form class="" action="index.html" method="post">
+          <div class="form-group">
+            <label for="">Input 1:</label>
+            <input type="text" name="" class="form-control" placeholder="Input 1">
+          </div>
+          <div class="form-group">
+            <label for="">Input 2:</label>
+            <textarea name="" class="form-control mytextarea" placeholder="Input 2"></textarea>
+          </div>
+          <button type="submit" class="mybtn">Submit</button>
+        </form>
+      </section> -->
+    </div>
+</div>
+
+
+
+
+
+
+<!-- <h2>Product Title Goes Here...</h2>
+<div class="container">
+    <div class="card">
+        <div class="container-fliud">
+            <div class="wrapper row">
+                <div class="preview col-md-6">
+                    <div class="preview-pic tab-content">
+                        <div class="tab-pane active" id="pic-1"><img src="http://placehold.it/200x200"/></div>
+                    </div>
+                </div>
+                <div class="details col-md-6">
+                    <div class="panel panel-default text-center">
+                        <h3><div class="panel-title"><span class="glyphicon glyphicon-list-alt"></span>Brand</div></h3>
+                        <hr>
+                        <p>BMW</p>
+                    </div>
+                    <div class="panel panel-default text-center">
+                        <h3><div class="panel-title"><span class="glyphicon glyphicon-list-alt"></span>Series</div></h3>
+                        <hr>
+                        <p>X5</p>
+                    </div>
+                    <div class="panel panel-default text-center">
+                        <h3><div class="panel-title"><span class="glyphicon glyphicon-list-alt"></span>Model</div></h3>
+                        <hr>
+                        <p>741</p>
+                    </div>
+                    <div class="panel panel-default text-center">
+                        <h3><div class="panel-title"><span class="glyphicon glyphicon-list-alt"></span>Type</div></h3>
+                        <hr>
+                        <p>Cars</p>
+                    </div>
+                    <div class="panel panel-default text-center">
+                        <h3><div class="panel-title"><span class="glyphicon glyphicon-list-alt"></span>Engine</div></h3>
+                        <hr>
+                        <p>D007</p>
+                    </div>
+                    <div class="panel panel-default text-center">
+                        <h3><div class="panel-title"><span class="glyphicon glyphicon-list-alt"></span>Petrol/Diesel</div></h3>
+                        <hr>
+                        <p>Petrol</p>
+                    </div>
+                    <div class="panel panel-default text-center">
+                        <h3><div class="panel-title"><span class="glyphicon glyphicon-list-alt"></span>Year</div></h3>
+                        <hr>
+                        <p>2017</p>
+                    </div>
+                  </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<br>
+<br> -->

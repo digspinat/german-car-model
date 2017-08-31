@@ -1,0 +1,15 @@
+{{ partial "header.html" . }}
+<div class="content">
+  
+
+  {{ range $.Scratch.Get "l1"  }}
+    <br >
+  {{end}}
+</div>
+  <!-- {{ range ( .Paginate (where .Data.Pages "Type" "post")).Pages }}
+    {{ .Render "summary"}}
+  {{ end }}
+  {{ partial "pagination.html" . }} -->
+
+
+{{ partial "footer.html" . }}

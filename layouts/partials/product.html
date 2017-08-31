@@ -1,0 +1,428 @@
+<br>
+<div class="pure-g mobileviewsidebar" style="background-color:#e1e9ee;">
+    <div class="pure-u-24-24">
+      <!-- {{ partial "filter.html" . }} -->
+    </div>
+</div>
+<div class="pure-g">
+    <div class="pure-u-17-24">
+      <div class="container">
+      <div class="row" id="productdata">
+        {{ range (where .Site.Pages "Section" "manual") }}
+          {{ if eq .Title "Manuals" }}
+
+          {{else}}
+          <div class="col-md-4">
+              <div class="ibox">
+                  <div class="ibox-content product-box">
+                      <div class="product-imitation">
+                          <img src="{{ .Params.image.url }}" alt="" height="200px;" width="200px;">
+                      </div>
+                      <div class="product-desc">
+                          <span class="product-price">
+                              Price: ${{ .Params.product_price }}
+                          </span>
+                          <small class="text-muted"></small>
+                          <a href="{{ .Permalink }}" class="product-name">{{ .Title }}</a>
+                          <div class="m-t text-righ">
+                              <a href="{{ .Permalink }}" class="btn btn-xs btn-outline btn-primary">Info <i class="fa fa-long-arrow-right"></i></a>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+          {{end}}
+        {{ end }}
+        <script type="text/javascript">
+        var client = algoliasearch("W7191599G4", "ee80b56d30d0cd6d0fa0114e83d98eb2");
+        var index = client.initIndex('bmw_product');
+          $(document).on('click','.category',function(){
+            if($(this).is(':checked')){
+              var searchText = $(this).val();
+              index.search({
+                query: searchText
+              }).then(res => {
+                // console.log(JSON.stringify(res.hits));
+                var prodcuct = ""
+                $.each(res.hits, function( i, val ) {
+                  prodcuct += "<div class='col-md-4'>"+
+                      "<div class='ibox'>"+
+                          "<div class='ibox-content product-box'>"+
+                              "<div class='product-imitation'>"+
+                                  "<img src='"+val['image_link']+"' alt='' height='200px' width='200px'>"+
+                              "</div>"+
+                              "<div class='product-desc'>"+
+                                  "<span class='product-price'>"+
+                                      "Price: $"+val['price']+
+                                  "</span>"+
+                                  "<small class='text-muted'>Category</small>"+
+                                  "<a href='#' class='product-name'>"+val['title']+"</a>"+
+                                  "<div class='m-t text-righ'>"+
+                                      "<a href='#' class='btn btn-xs btn-outline btn-primary'>Info <i class='fa fa-long-arrow-right'></i></a>"+
+                                  "</div>"+
+                              "</div>"+
+                          "</div>"+
+                      "</div>"+
+                  "</div>";
+                });
+                $("#productdata").html(prodcuct);
+              });
+            }else{
+              //uncheck all boxes here
+              $('.model').each(function(){
+                $(this).prop('checked',false);
+              });
+              $('.submodel').each(function(){
+                $(this).prop('checked',false);
+              });
+
+              index.search({
+                query: 'Cars'
+              }).then(res => {
+                // console.log(JSON.stringify(res.hits));
+                var prodcuct = ""
+                $.each(res.hits, function( i, val ) {
+                  prodcuct += "<div class='col-md-4'>"+
+                      "<div class='ibox'>"+
+                          "<div class='ibox-content product-box'>"+
+                              "<div class='product-imitation'>"+
+                                  "<img src='"+val['image_link']+"' alt='' height='200px' width='200px'>"+
+                              "</div>"+
+                              "<div class='product-desc'>"+
+                                  "<span class='product-price'>"+
+                                      "Price: $"+val['price']+
+                                  "</span>"+
+                                  "<small class='text-muted'>Category</small>"+
+                                  "<a href='#' class='product-name'>"+val['title']+"</a>"+
+                                  "<div class='m-t text-righ'>"+
+                                      "<a href='#' class='btn btn-xs btn-outline btn-primary'>Info <i class='fa fa-long-arrow-right'></i></a>"+
+                                  "</div>"+
+                              "</div>"+
+                          "</div>"+
+                      "</div>"+
+                  "</div>";
+                });
+                $("#productdata").html(prodcuct);
+              });
+            }
+          });
+
+          $(document).on('click','.model',function(){
+            var product_typecheck = 0;
+            var modelcheck = 0;
+            var submodelcheck = 0;
+            if($(".category").is(':checked')){
+              product_typecheck = 1
+            }
+            $('.model').each(function(){
+              if (this.checked) {
+                modelcheck = 1
+              }
+            })
+            $('.submodel').each(function(){
+              if (this.checked) {
+                submodelcheck = 1
+              }
+            })
+            if(product_typecheck == 1){
+              if(modelcheck == 1){
+                if(submodelcheck == 1){
+                  //search submodel
+                  var modelsearch = [];
+                  var searchArray = [];
+                  var searchText = "";
+                  $('.submodel').each(function(){
+                    if (this.checked) {
+                      var model = $(this).val();
+                      searchText += model+" ";
+                    }
+                  })
+                  $('.model').each(function(){
+                    if (this.checked) {
+                      var model = $(this).val();
+                      modelsearch.push("model:"+model)
+                    }
+                  })
+                  searchArray.push(modelsearch);
+                  searchArray.push("product_type:Cars");
+                  index.search({
+                    query: searchText,
+                    facetFilters: searchArray
+                  }).then(res => {
+                    var prodcuct = ""
+                    $.each(res.hits, function( i, val ) {
+                      prodcuct += "<div class='col-md-4'>"+
+                          "<div class='ibox'>"+
+                              "<div class='ibox-content product-box'>"+
+                                  "<div class='product-imitation'>"+
+                                      "<img src='"+val['image_link']+"' alt='' height='200px' width='200px'>"+
+                                  "</div>"+
+                                  "<div class='product-desc'>"+
+                                      "<span class='product-price'>"+
+                                          "Price: $"+val['price']+
+                                      "</span>"+
+                                      "<small class='text-muted'>Category</small>"+
+                                      "<a href='#' class='product-name'>"+val['title']+"</a>"+
+                                      "<div class='m-t text-righ'>"+
+                                          "<a href='#' class='btn btn-xs btn-outline btn-primary'>Info <i class='fa fa-long-arrow-right'></i></a>"+
+                                      "</div>"+
+                                  "</div>"+
+                              "</div>"+
+                          "</div>"+
+                      "</div>";
+                    });
+                    $("#productdata").html(prodcuct);
+                  });
+                }else{
+                  //model search here
+                  var product_cat = $(".category").val();
+                  var modelsearch = [];
+                  var searchArray = [];
+                  $('.model').each(function(){
+                    if (this.checked) {
+                      var model = $(this).val();
+                      modelsearch.push("model:"+model)
+                    }
+                  })
+                  searchArray.push(modelsearch);
+                  searchArray.push("product_type:Cars");
+                  index.search({
+                    query: '',
+                    facetFilters: searchArray
+                  }).then(res => {
+                    // console.log(res);
+                    var prodcuct = ""
+                    $.each(res.hits, function( i, val ) {
+                      prodcuct += "<div class='col-md-4'>"+
+                          "<div class='ibox'>"+
+                              "<div class='ibox-content product-box'>"+
+                                  "<div class='product-imitation'>"+
+                                      "<img src='"+val['image_link']+"' alt='' height='200px' width='200px'>"+
+                                  "</div>"+
+                                  "<div class='product-desc'>"+
+                                      "<span class='product-price'>"+
+                                          "Price: $"+val['price']+
+                                      "</span>"+
+                                      "<small class='text-muted'>Category</small>"+
+                                      "<a href='#' class='product-name'>"+val['title']+"</a>"+
+                                      "<div class='m-t text-righ'>"+
+                                          "<a href='#' class='btn btn-xs btn-outline btn-primary'>Info <i class='fa fa-long-arrow-right'></i></a>"+
+                                      "</div>"+
+                                  "</div>"+
+                              "</div>"+
+                          "</div>"+
+                      "</div>";
+                    });
+                    $("#productdata").html(prodcuct);
+                  });
+                }
+              }else{
+                if($(".category").is(':checked')){
+                  index.search({
+                    query: 'Cars'
+                  }).then(res => {
+                    // console.log(JSON.stringify(res.hits));
+                    var prodcuct = ""
+                    $.each(res.hits, function( i, val ) {
+                      prodcuct += "<div class='col-md-4'>"+
+                          "<div class='ibox'>"+
+                              "<div class='ibox-content product-box'>"+
+                                  "<div class='product-imitation'>"+
+                                      "<img src='"+val['image_link']+"' alt='' height='200px' width='200px'>"+
+                                  "</div>"+
+                                  "<div class='product-desc'>"+
+                                      "<span class='product-price'>"+
+                                          "Price: $"+val['price']+
+                                      "</span>"+
+                                      "<small class='text-muted'>Category</small>"+
+                                      "<a href='#' class='product-name'>"+val['title']+"</a>"+
+                                      "<div class='m-t text-righ'>"+
+                                          "<a href='#' class='btn btn-xs btn-outline btn-primary'>Info <i class='fa fa-long-arrow-right'></i></a>"+
+                                      "</div>"+
+                                  "</div>"+
+                              "</div>"+
+                          "</div>"+
+                      "</div>";
+                    });
+                    $("#productdata").html(prodcuct);
+                  });
+                }else{
+                  alert("Please Select First Category");
+                }
+                $('.submodel').each(function(){
+                  $(this).prop('checked',false);
+                });
+              }
+            }else{
+              $('.model').each(function(){
+                $(this).prop('checked',false);
+              });
+              $('.submodel').each(function(){
+                $(this).prop('checked',false);
+              });
+            }
+          });
+
+          $(document).on('click','.submodel',function(){
+            var product_typecheck = 0;
+            var modelcheck = 0;
+            var submodelcheck = 0;
+            if($(".category").is(':checked')){
+              product_typecheck = 1
+            }
+            $('.model').each(function(){
+              if (this.checked) {
+                modelcheck = 1
+              }
+            })
+            $('.submodel').each(function(){
+              if (this.checked) {
+                submodelcheck = 1
+              }
+            })
+            if(product_typecheck == 1){
+              if(modelcheck == 1){
+                if(submodelcheck == 1){
+                  //search submodel
+                  var modelsearch = [];
+                  var searchArray = [];
+                  var searchText = "";
+                  $('.submodel').each(function(){
+                    if (this.checked) {
+                      var model = $(this).val();
+                      searchText += model+" ";
+                    }
+                  })
+                  $('.model').each(function(){
+                    if (this.checked) {
+                      var model = $(this).val();
+                      modelsearch.push("model:"+model)
+                    }
+                  })
+                  searchArray.push(modelsearch);
+                  searchArray.push("product_type:Cars");
+                  index.search({
+                    query: searchText,
+                    facetFilters: searchArray
+                  }).then(res => {
+                    var prodcuct = ""
+                    $.each(res.hits, function( i, val ) {
+                      prodcuct += "<div class='col-md-4'>"+
+                          "<div class='ibox'>"+
+                              "<div class='ibox-content product-box'>"+
+                                  "<div class='product-imitation'>"+
+                                      "<img src='"+val['image_link']+"' alt='' height='200px' width='200px'>"+
+                                  "</div>"+
+                                  "<div class='product-desc'>"+
+                                      "<span class='product-price'>"+
+                                          "Price: $"+val['price']+
+                                      "</span>"+
+                                      "<small class='text-muted'>Category</small>"+
+                                      "<a href='#' class='product-name'>"+val['title']+"</a>"+
+                                      "<div class='m-t text-righ'>"+
+                                          "<a href='#' class='btn btn-xs btn-outline btn-primary'>Info <i class='fa fa-long-arrow-right'></i></a>"+
+                                      "</div>"+
+                                  "</div>"+
+                              "</div>"+
+                          "</div>"+
+                      "</div>";
+                    });
+                    $("#productdata").html(prodcuct);
+                  });
+                }else{
+                  //model search here
+                  var product_cat = $(".category").val();
+                  var modelsearch = [];
+                  var searchArray = [];
+                  $('.model').each(function(){
+                    if (this.checked) {
+                      var model = $(this).val();
+                      modelsearch.push("model:"+model)
+                    }
+                  })
+                  searchArray.push(modelsearch);
+                  searchArray.push("product_type:Cars");
+                  index.search({
+                    query: '',
+                    facetFilters: searchArray
+                  }).then(res => {
+                    // console.log(res);
+                    var prodcuct = ""
+                    $.each(res.hits, function( i, val ) {
+                      prodcuct += "<div class='col-md-4'>"+
+                          "<div class='ibox'>"+
+                              "<div class='ibox-content product-box'>"+
+                                  "<div class='product-imitation'>"+
+                                      "<img src='"+val['image_link']+"' alt='' height='200px' width='200px'>"+
+                                  "</div>"+
+                                  "<div class='product-desc'>"+
+                                      "<span class='product-price'>"+
+                                          "Price: $"+val['price']+
+                                      "</span>"+
+                                      "<small class='text-muted'>Category</small>"+
+                                      "<a href='#' class='product-name'>"+val['title']+"</a>"+
+                                      "<div class='m-t text-righ'>"+
+                                          "<a href='#' class='btn btn-xs btn-outline btn-primary'>Info <i class='fa fa-long-arrow-right'></i></a>"+
+                                      "</div>"+
+                                  "</div>"+
+                              "</div>"+
+                          "</div>"+
+                      "</div>";
+                    });
+                    $("#productdata").html(prodcuct);
+                  });
+                }
+              }else{
+                if($(".category").is(':checked')){
+                  index.search({
+                    query: 'Cars'
+                  }).then(res => {
+                    // console.log(JSON.stringify(res.hits));
+                    var prodcuct = ""
+                    $.each(res.hits, function( i, val ) {
+                      prodcuct += "<div class='col-md-4'>"+
+                          "<div class='ibox'>"+
+                              "<div class='ibox-content product-box'>"+
+                                  "<div class='product-imitation'>"+
+                                      "<img src='"+val['image_link']+"' alt='' height='200px' width='200px'>"+
+                                  "</div>"+
+                                  "<div class='product-desc'>"+
+                                      "<span class='product-price'>"+
+                                          "Price: $"+val['price']+
+                                      "</span>"+
+                                      "<small class='text-muted'>Category</small>"+
+                                      "<a href='#' class='product-name'>"+val['title']+"</a>"+
+                                      "<div class='m-t text-righ'>"+
+                                          "<a href='#' class='btn btn-xs btn-outline btn-primary'>Info <i class='fa fa-long-arrow-right'></i></a>"+
+                                      "</div>"+
+                                  "</div>"+
+                              "</div>"+
+                          "</div>"+
+                      "</div>";
+                    });
+                    $("#productdata").html(prodcuct);
+                  });
+                }else{
+                  alert("Please Select First Category");
+                }
+                $('.submodel').each(function(){
+                  $(this).prop('checked',false);
+                });
+              }
+            }else{
+              $('.model').each(function(){
+                $(this).prop('checked',false);
+              });
+              $('.submodel').each(function(){
+                $(this).prop('checked',false);
+              });
+            }
+          });
+        </script>
+      </div>
+      </div>
+    </div>
+    <div class="pure-u-7-24 my_rightbar">
+      <!-- {{ partial "filter.html" . }} -->
+    </div>
+</div>

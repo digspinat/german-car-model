@@ -1,0 +1,68 @@
+<div class="mybar" style="background-color:#7a8690;">
+  <div class="custom-wrapper pure-g site-header" id="mymenu">
+      <div class="pure-u-1 pure-u-md-1-3">
+        <div class="pure-menu title-area">
+          <a href="{{ $.Site.BaseURL }}" class="pure-menu-heading custom-brand"><font color="white">GCM</font></a>
+          <a href="#" class="custom-toggle" id="toggle"><s class="bar"></s><s class="bar"></s></a>
+        </div>
+      </div>
+      <div class="pure-u-1 pure-u-md-2-3">
+        <div class="pure-menu pure-menu-horizontal pure-menu-scrollable custom-menu-3 custom-can-transform">
+          <ul class="pure-menu-list mynewsize" style="">
+            {{ range (where .Site.Pages "Section" "landpage") }}
+              {{ if eq .Title "Landpages" }}
+
+              {{else}}
+                  <li class="pure-menu-item"><a href="{{ .Permalink }}" class="pure-menu-link mynew">{{ .Title }}</a></li>
+              {{end}}
+            {{ end }}
+
+            {{ if .IsTranslated }}
+              &middot; {{ i18n "translations" }}
+              {{ range .Translations }}
+                  {{ $curLang := index (where $.Site.Languages "Lang" .Lang) 0 }}
+                  <a href="{{ .Permalink }}">{{ $curLang.LanguageName }}</a>
+              {{ end }}
+            {{ end }}
+          </ul>
+        </div>
+      </div>
+  </div>
+</div>
+<div class="pure-menu pure-menu-horizontal pure-menu-scrollable myanothermenu">
+    <ul class="pure-menu-list">
+        <!-- <li class="pure-menu-item mylink"><a href="#" class="pure-menu-link">Home</a></li> -->
+        {{ $url := "/data/bmwcsv.csv" }}
+        {{ $sep := "," }}
+
+        {{ range $i, $r := getCSV $sep $url }}
+          {{ if eq $i 0 }}{{ else }}
+
+          {{ end }}
+        {{ end }}
+
+        {{ range .Site.Menus.main }}
+        {{ if .HasChildren }}
+          <li class="pure-menu-item pure-menu-has-children">
+            <a class="pure-menu-link" href="#">{{ .Pre }}{{ .Name }}</a>
+            <ul class="pure-menu-children">
+              {{ range .Children }}
+              <li class="pure-menu-item">
+                <a href="{{ .URL }}">{{ .Name }}</a>
+              </li>
+              {{ end }}
+            </ul>
+        {{else}}
+          <li class="pure-menu-item mylink"><a href="{{ .URL }}" class="pure-menu-link">{{ .Name }}</a></li>
+        {{end}}
+        {{end}}
+
+        {{ range (where .Site.Pages "Section" "landpage") }}
+          {{ if eq .Title "Landpages" }}
+
+          {{else}}
+              <li class="pure-menu-item mylink"><a href="{{ .Permalink }}" class="pure-menu-link">{{ .Title }}</a></li>
+          {{end}}
+        {{ end }}
+    </ul>
+</div>

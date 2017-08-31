@@ -1,0 +1,48 @@
+</div>
+<!-- </div> -->
+<script src="{{ .Site.BaseURL }}js/ui.js"></script>
+<script>
+      (function (window, document) {
+      var mymenu = document.getElementById('mymenu'),
+          WINDOW_CHANGE_EVENT = ('onorientationchange' in window) ? 'orientationchange':'resize';
+
+      function toggleHorizontal() {
+          [].forEach.call(
+              document.getElementById('mymenu').querySelectorAll('.custom-can-transform'),
+              function(el){
+                  el.classList.toggle('pure-mymenu-horizontal');
+              }
+          );
+      };
+
+      function toggleMenu() {
+          // set timeout so that the panel has a chance to roll up
+          // before the mymenu switches states
+          if (mymenu.classList.contains('open')) {
+              setTimeout(toggleHorizontal, 500);
+          }
+          else {
+              toggleHorizontal();
+          }
+          mymenu.classList.toggle('open');
+          document.getElementById('toggle').classList.toggle('x');
+      };
+
+      function closeMenu() {
+          if (mymenu.classList.contains('open')) {
+              toggleMenu();
+          }
+      }
+
+      document.getElementById('toggle').addEventListener('click', function (e) {
+          toggleMenu();
+          e.preventDefault();
+      });
+
+      window.addEventListener(WINDOW_CHANGE_EVENT, closeMenu);
+      })(this, this.document);
+
+      </script>
+{{ partial "google_analytics.html" . }}
+</body>
+</html>

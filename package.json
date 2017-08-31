@@ -1,0 +1,22 @@
+{
+  "name": "german-car-model",
+  "version": "1.0.0",
+  "description": "\"\"",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Miteshpatel25/german-car-model.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Miteshpatel25/german-car-model/issues"
+  },
+  "homepage": "https://github.com/Miteshpatel25/german-car-model#readme",
+  "devDependencies": {
+    "datocms-client": "^0.3.27"
+  }
+}
