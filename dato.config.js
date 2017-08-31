@@ -35,7 +35,8 @@ module.exports = (dato, root, i18n) => {
                 manual_type: Manuals.manualType,
                 download_id: Manuals.manualDownloadId,
                 send_owl: Manuals.sendowl,
-                id: "singleproduct"
+                id: "singleproduct",
+                categories: Manuals.manualBrand
               },
               content: Manuals.manualDescription
             }
@@ -44,4 +45,5 @@ module.exports = (dato, root, i18n) => {
       });
     });
   });
+
 }

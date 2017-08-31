@@ -1,4 +1,4 @@
-baseurl = "http://nurse-servants-38008.netlify.com/"
+baseurl = "https://nurse-servants-38008.netlify.com/"
 languageCode = "en-us"
 title = "German Car Model"
 author = "Yoshiharu Yamashita"
@@ -7,9 +7,14 @@ canonifyurls = true
 paginate = 10
 DefaultContentLanguage = "en"
 
+# [taxonomies]
+#   tag = "tags"
+#   category = "categories"
+
 [indexes]
   tag = "tags"
-  topic = "topics"
+  category = "categories"
+
 
 [params]
   # Shown in the home page
@@ -46,7 +51,7 @@ DefaultContentLanguage = "en"
           pre = "<i class='fa fa-list fa-fw'></i>"
           weight = 3
           identifier = "category"
-          url = "/category/"
+          url = "/categories/"
       # [[languages.en.menu.main]]
       #     name = "Single Product"
       #     pre = "<i class='fa fa-list fa-fw'></i>"
@@ -81,7 +86,7 @@ DefaultContentLanguage = "en"
           pre = "<i class='fa fa-list fa-fw'></i>"
           weight = 3
           identifier = "category"
-          url = "/id/category/"
+          url = "/id/categories/"
       # [[languages.id.menu.main]]
       #     name = "Produk tunggal"
       #     pre = "<i class='fa fa-list fa-fw'></i>"

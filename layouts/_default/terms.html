@@ -4,15 +4,23 @@
   <h1>{{ .Title }}</h1>
 </div>
 <div class="content">
-  <ul>
+  <br><br>
+  <div class="pure-g">
   {{ $data := .Data }}
   {{ range $key, $value := .Data.Terms.ByCount }}
-    <li>
-      <a href="{{ $value.Name | urlize }}">{{ $value.Name }}</a>
-      <span>&#40;{{ $value.Count }}&#41;</span>
-    </li>
+      <div style="padding:20px;" class="pure-u-1-3">
+        <img src="/img/banner1.png" class="pure-img myimagesize" alt="">
+        <div class="entry-header">
+          <h3 class="entry-title" itemprop="headline">
+            <a href="{{ $value.Name | urlize }}" rel="bookmark">{{ $value.Name }}</a>
+          </h3>
+          <p class="book-author">
+            <span>&#40;{{ $value.Count }}&#41;</span>
+          </p>
+        </div>
+      </div>
   {{ end }}
-  </ul>
+  </div>
 </div>
 
 {{ partial "footer.html" . }}
