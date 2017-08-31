@@ -40,7 +40,7 @@ DefaultContentLanguage = "en"
           pre = "<i class='fa fa-list fa-fw'></i>"
           weight = 2
           identifier = "product"
-          url = "/product/"
+          url = "/manual/"
       [[languages.en.menu.main]]
           name = "Category"
           pre = "<i class='fa fa-list fa-fw'></i>"
@@ -75,7 +75,7 @@ DefaultContentLanguage = "en"
           pre = "<i class='fa fa-list fa-fw'></i>"
           weight = 2
           identifier = "product"
-          url = "/id/product/"
+          url = "/id/manual/"
       [[languages.id.menu.main]]
           name = "Kategori"
           pre = "<i class='fa fa-list fa-fw'></i>"
