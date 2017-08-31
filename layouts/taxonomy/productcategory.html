@@ -1,0 +1,29 @@
+{{ partial "header.html" . }}
+
+<div class="header">
+  <h1>{{ .Title }}</h1>
+</div>
+<div class="content">
+  <br>
+  <div class="pure-g mobileviewsidebar" style="background-color:#e1e9ee;">
+      <div class="pure-u-24-24">
+        <!-- {{ partial "filter.html" . }} -->
+      </div>
+  </div>
+  <div class="pure-g">
+      <div class="pure-u-17-24">
+        <div class="container">
+          <div class="row" id="productdata">
+            {{ range .Data.Pages }}
+              {{ .Render "summary"}}
+            {{ end }}
+          </div>
+        </div>
+      </div>
+      <div class="pure-u-7-24 my_rightbar">
+        <!-- {{ partial "filter.html" . }} -->
+      </div>
+  </div>
+</div>
+
+{{ partial "footer.html" . }}

@@ -1,18 +1,19 @@
-<article>
-  <header>
-    <h2><a href="{{ .Permalink }}">{{ .Title }}</a></h2>
-
-    {{ partial "post_meta.html" . }}
-
-  </header>
-
-  <p>
-  {{ .Summary }}
-  </p>
-
-  {{ if .Truncated }}
-  <footer>
-    <a href="{{ .RelPermalink }}">Read more<i class="fa fa-angle-double-right fa-fw"></i></a>
-  </footer>
-  {{ end }}
-</article>
+<div class="col-md-4">
+  <div class="ibox">
+    <div class="ibox-content product-box">
+      <div class="product-imitation">
+        <img src="{{ .Params.image.url }}" alt="" height="200px;" width="200px;">
+      </div>
+      <div class="product-desc">
+        <span class="product-price">
+          Price: ${{ .Params.product_price }}
+        </span>
+        <small class="text-muted"></small>
+        <a href="{{ .Permalink }}" class="product-name">{{ .Title }}</a>
+        <div class="m-t text-righ">
+          <a href="{{ .Permalink }}" class="btn btn-xs btn-outline btn-primary">Info <i class="fa fa-long-arrow-right"></i></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

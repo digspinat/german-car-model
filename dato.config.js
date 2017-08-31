@@ -36,7 +36,7 @@ module.exports = (dato, root, i18n) => {
                 download_id: Manuals.manualDownloadId,
                 send_owl: Manuals.sendowl,
                 id: "singleproduct",
-                categories: Manuals.manualBrand
+                productcategories: Manuals.manualBrand
               },
               content: Manuals.manualDescription
             }
