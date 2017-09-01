@@ -31,7 +31,7 @@ DefaultContentLanguage = "en"
       weight = 10
       languageName = "English"
       languageCode = "en-us"
-      description = "Scriptor is a minimal Hugo blogging theme for writers."
+      description = "German Car Model"
       message = "John Doe is a designer, speaker, and author. He is the Creative Director of Awesome Design studio, co-founder of magazine Camera and a coffee junkie."
       copyright = "All rights reserved."
 

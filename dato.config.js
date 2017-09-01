@@ -1,3 +1,5 @@
+
+
 module.exports = (dato, root, i18n) => {
   // console.log(dato.landingPages);
   dato.landingPages.forEach((landingPages, i) => {
@@ -14,6 +16,7 @@ module.exports = (dato, root, i18n) => {
     });
   });
   // console.log(dato.manuals);.
+
   root.directory("content/manual", (articlesDir) => {
     i18n.availableLocales.forEach((locale) => {
       i18n.withLocale(locale, () => {
@@ -46,4 +49,19 @@ module.exports = (dato, root, i18n) => {
     });
   });
 
+  var myall = []
+  i18n.withLocale('en', () => {
+    i18n.locale = 'en';              // => "it"
+    dato.manuals.forEach((Manuals, i) => {
+      var content = Manuals.entity.payload.attributes;
+      myall.push(content)
+    });
+  });
+  // console.log(myall);
+  root.createDataFile(`data/data.json`, 'json', myall)
+  // var myall = []
+  // dato.manuals.forEach((Manuals, i) => {
+  //   var content = Manuals.entity.payload.attributes;
+  //   myall.push(content)
+  // });
 }

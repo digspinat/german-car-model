@@ -43,6 +43,42 @@
       })(this, this.document);
 
       </script>
+      <script type="text/javascript">
+        $(document).ready(function(){
+          // var client = algoliasearch("YZO8M6AZ6J", "847f24047332edf2bb6a0c1f0181b83e");
+          // var index = client.initIndex('new_allcar');
+          // index.setSettings({
+          //   attributeForDistinct: 'manualBrand.en'
+          // });
+          // index.search({
+          //   query: '*'
+          // }).then(res => {
+          //   // console.log(res);
+          //   var Brand = ""
+          //   $.each(res.hits, function( i, val ){
+          //     Brand += "<input type='checkbox' value='"+val['manualBrand'].en+"' class='brand'> "+val['manualBrand'].en+" <br>";
+          //   });
+          //   // alert(Brand);
+          //   $(".brand_my").html(Brand);
+          //   // console.log(Brand);
+          // });
+          //
+          // index.setSettings({
+          //   attributeForDistinct: 'manualSerie.en'
+          // });
+          // index.search({
+          //   query: '*'
+          // }).then(res => {
+          //   console.log(res);
+          //   var Series = ""
+          //   $.each(res.hits, function( i, val ){
+          //     Series += "<input type='checkbox' value='"+val['manualSerie'].en+"' class='brand'> "+val['manualSerie'].en+" <br>";
+          //   });
+          //   $(".series_my").html(Series);
+          // });
+
+        });
+      </script>
 {{ partial "google_analytics.html" . }}
 </body>
 </html>
