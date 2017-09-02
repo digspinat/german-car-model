@@ -59,9 +59,40 @@ module.exports = (dato, root, i18n) => {
   });
   // console.log(myall);
   root.createDataFile(`data/data.json`, 'json', myall)
-  // var myall = []
-  // dato.manuals.forEach((Manuals, i) => {
-  //   var content = Manuals.entity.payload.attributes;
-  //   myall.push(content)
-  // });
+
+  // console.log(headerMenus.menuItem.pageDescription);
+  root.directory("content/headermenus", (articlesDir) => {
+    i18n.availableLocales.forEach((locale) => {
+      i18n.withLocale(locale, () => {
+        dato.headerMenus.forEach((headerMenus) => {
+          articlesDir.createPost(
+            `${headerMenus.menuItem.slugurl}.${locale}.md`, "yaml", {
+              frontmatter: {
+                title: headerMenus.menuItem.pageTitle,
+                url: headerMenus.menuItem.slugurl,
+                icon: headerMenus.menuItem.pageIcon
+              },
+              content: headerMenus.menuItem.pageDescription
+            }
+          );
+        });
+      });
+    });
+  });
+
+  // console.log(dato.footer);
+  root.directory("content/footer", (articlesDir) => {
+    i18n.availableLocales.forEach((locale) => {
+      i18n.withLocale(locale, () => {
+          articlesDir.createPost(
+            `footer.${locale}.md`, "yaml", {
+              frontmatter: {
+                title: "Footer"
+              },
+              content: dato.footer.footerDescription
+            }
+          );
+      });
+    });
+  });
 }

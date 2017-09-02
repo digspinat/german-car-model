@@ -1,3 +1,18 @@
+.footer_title{
+  color: white;
+  text-align: center;
+}
+footer{
+  background-color: #181c1e;
+  position:fixed;
+  bottom:0;
+  width:100%;
+  height:60px;   /* Height of the footer */
+  margin: auto;
+  padding: 20px;
+}
+
+
 body {
     color: #777;
 }
@@ -43,7 +58,7 @@ The content `<div>` is where all your content goes.
     margin: 0 auto;
     padding: 0 2em;
     max-width: 1345px;
-    margin-bottom: 50px;
+    margin-bottom: 100px;
     line-height: 1.6em;
 }
 

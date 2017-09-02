@@ -7,15 +7,15 @@
   <title>{{ if .IsHome }}{{ .Title }}{{ else }}{{ .Title }} &middot; {{ .Site.Title }}{{ end }}</title>
 
   <!-- CSS -->
-  <!-- {{ $purecss := "https://cdnjs.cloudflare.com/ajax/libs/pure/1.0.0/" }} -->
+  {{ $purecss := "https://cdnjs.cloudflare.com/ajax/libs/pure/1.0.0/" }}
   <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/pure-min.css" integrity="sha384-nn4HPE8lTHyVtfCBi5yW9d20FjT8BJwUXyWZT9InLYax14RDjBj46LmSztkmNP9w" crossorigin="anonymous">
   <script src="/js/jquery.js"></script>
-  {{ "<!--[if lte IE 8]>" | safeHTML }}
-  <link rel="stylesheet" href="{{ $purecss }}grids-responsive-old-ie-min.css">
-  {{ "<![endif]-->" | safeHTML }}
-  {{ "<!--[if gt IE 8]><!-->" | safeHTML }}
-  <!-- <link rel="stylesheet" href="{{ $purecss }}grids-responsive-min.css"> -->
-  {{ "<!--<![endif]-->" | safeHTML }}
+  <!--[if lte IE 8]>
+            <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/grids-responsive-old-ie-min.css">
+        <![endif]-->
+        <!--[if gt IE 8]><!-->
+            <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/grids-responsive-min.css">
+        <!--<![endif]-->
 
   {{ "<!--[if lte IE 8]>" | safeHTML }}
   <link rel="stylesheet" href="/css/side-menu-old-ie.css">

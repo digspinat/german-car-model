@@ -7,7 +7,10 @@
 <div class="content">
   {{ if (isset .Params "id") }}
     {{ partial .Params.id . }}
-  {{ end }}
+  {{ else }}
+    {{ .Content }}
+  {{end}}
+
 </div>
 
 {{ partial "footer.html" . }}

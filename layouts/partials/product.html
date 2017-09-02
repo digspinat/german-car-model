@@ -5,6 +5,9 @@
     </div>
 </div>
 <div class="pure-g">
+    <div class="pure-u-7-24 my_rightbar">
+      {{ partial "filter.html" . }}
+    </div>
     <div class="pure-u-17-24">
       <div class="container">
       <div class="row" id="productdata">
@@ -35,8 +38,8 @@
         {{ end }}
       </div>
       <script type="text/javascript">
-        var client = algoliasearch("YZO8M6AZ6J", "847f24047332edf2bb6a0c1f0181b83e");
-        var index = client.initIndex('new_allcar');
+        // var client = algoliasearch("YZO8M6AZ6J", "847f24047332edf2bb6a0c1f0181b83e");
+        // var index = client.initIndex('new_allcar');
 
         $(document).on('click','.brand',function(){
           var brandcheck = 0;
@@ -5448,8 +5451,5 @@
 
       </script>
       </div>
-    </div>
-    <div class="pure-u-7-24 my_rightbar">
-      {{ partial "filter.html" . }}
     </div>
 </div>
