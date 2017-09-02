@@ -14,7 +14,7 @@
   <link rel="stylesheet" href="{{ $purecss }}grids-responsive-old-ie-min.css">
   {{ "<![endif]-->" | safeHTML }}
   {{ "<!--[if gt IE 8]><!-->" | safeHTML }}
-  <link rel="stylesheet" href="{{ $purecss }}grids-responsive-min.css">
+  <!-- <link rel="stylesheet" href="{{ $purecss }}grids-responsive-min.css"> -->
   {{ "<!--<![endif]-->" | safeHTML }}
 
   {{ "<!--[if lte IE 8]>" | safeHTML }}
@@ -69,7 +69,7 @@
   {{ range $.Site.Params.highlightjs_extra_languages }}
   <!-- <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/{{ . }}.min.js"></script> -->
   {{ end }}
-  
+
   {{ end }}
 
   {{ partial "favicon.html" . }}
