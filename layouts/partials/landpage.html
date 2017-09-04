@@ -1,0 +1,45 @@
+<br>
+  <div class="pure-g mobileviewsidebar" style="background-color:#e1e9ee;">
+      <div class="pure-u-24-24">
+        <!-- {{ partial "filter.html" . }} -->
+      </div>
+  </div>
+  <div class="pure-g">
+    <div class="pure-u-7-24 my_rightbar">
+      <!-- {{ partial "filter.html" . }} -->
+    </div>
+      <div class="pure-u-17-24">
+        <div class="container">
+          <div class="row" id="productdata">
+            {{ $kind := .Title }}
+            {{ range (where .Site.Pages "Section" "manual") }}
+              {{ if eq .Title "Manuals" }}
+
+              {{else}}
+                {{ if eq .Params.brand $kind }}
+                  <div class="col-md-4">
+                      <div class="ibox">
+                          <div class="ibox-content product-box">
+                              <div class="product-imitation">
+                                  <img src="{{ .Params.image.url }}" alt="" height="200px;" width="200px;">
+                              </div>
+                              <div class="product-desc">
+                                  <span class="product-price">
+                                      Price: ${{ .Params.product_price }}
+                                  </span>
+                                  <small class="text-muted"></small>
+                                  <a href="{{ .Permalink }}" class="product-name">{{ .Title }}</a>
+                                  <div class="m-t text-righ">
+                                      <a href="{{ .Permalink }}" class="btn btn-xs btn-outline btn-primary">Info <i class="fa fa-long-arrow-right"></i></a>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+                {{end}}
+              {{end}}
+            {{ end }}
+          </div>
+        </div>
+      </div>
+</div>

@@ -2,17 +2,25 @@
 
 module.exports = (dato, root, i18n) => {
   // console.log(dato.landingPages);
-  dato.landingPages.forEach((landingPages, i) => {
-    root.createPost(`content/landpage/${landingPages.lpUrl}.md`, "yaml",{
-      frontmatter: {
-        title: landingPages.lpBrand,
-        model: landingPages.lpModel,
-        engine: landingPages.lpEngine,
-        lpurl: landingPages.lpUrl,
-        id: landingPages.template.templateName,
-        image: landingPages.image.toMap()
-      },
-      content: landingPages.lpBrand
+  root.directory("content/landpage", (articlesDir) => {
+    i18n.availableLocales.forEach((locale) => {
+      i18n.withLocale(locale, () => {
+        dato.landingPages.forEach((landingPages) => {
+          articlesDir.createPost(
+            `${landingPages.lpUrl}.${locale}.md`, "yaml", {
+              frontmatter: {
+                title: landingPages.lpBrand,
+                model: landingPages.lpModel,
+                engine: landingPages.lpEngine,
+                lpurl: landingPages.lpUrl,
+                image: landingPages.image.toMap(),
+                id: "landpage"
+              },
+              content: landingPages.lpBrand
+            }
+          );
+        });
+      });
     });
   });
   // console.log(dato.manuals);.

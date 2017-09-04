@@ -12,6 +12,16 @@
               {{ .Content | safeHTML }}
           {{end}}
         {{ end }}
+        <div class="pure-menu pure-menu-horizontal">
+          {{ range (where .Site.Pages "Section" "landpage") }}
+            {{ if eq .Title "Landpages" }}
+
+            {{else}}
+                <a href="{{ .URL }}" class="pure-menu-heading pure-menu-link">{{ .Title }}</a>
+            {{end}}
+          {{ end }}
+
+        </div>
       </div>
       <div class="col-md-4">
 
