@@ -10,6 +10,8 @@
   {{ else }}
     {{ if eq .Title "Contact Us"}}
       {{ partial "contactus.html" . }}
+    {{ else if eq .Title "Blog" }}
+      {{ partial "blog.html" . }}
     {{ else }}
       {{ .Content }}
     {{ end }}
