@@ -28,7 +28,7 @@ module.exports = (dato, root, i18n) => {
   root.directory("content/manual", (articlesDir) => {
     i18n.availableLocales.forEach((locale) => {
       i18n.withLocale(locale, () => {
-        dato.manuals.forEach((Manuals) => {
+        dato.manuals.forEach((Manuals, i) => {
           articlesDir.createPost(
             `${Manuals.manualId}.${locale}.md`, "yaml", {
               frontmatter: {
@@ -72,13 +72,15 @@ module.exports = (dato, root, i18n) => {
   root.directory("content/headermenus", (articlesDir) => {
     i18n.availableLocales.forEach((locale) => {
       i18n.withLocale(locale, () => {
-        dato.headerMenus.forEach((headerMenus) => {
+        dato.headerMenus.forEach((headerMenus, i) => {
           articlesDir.createPost(
             `${headerMenus.menuItem.slugurl}.${locale}.md`, "yaml", {
               frontmatter: {
                 title: headerMenus.menuItem.pageTitle,
                 url: headerMenus.menuItem.slugurl,
-                icon: headerMenus.menuItem.pageIcon
+                icon: headerMenus.menuItem.pageIcon,
+                weight: `${i}`,
+                type: "menu"
               },
               content: headerMenus.menuItem.pageDescription
             }

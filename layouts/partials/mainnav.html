@@ -9,13 +9,18 @@
       <div class="pure-u-1 pure-u-md-2-3">
         <div class="pure-menu pure-menu-horizontal pure-menu-scrollable custom-menu-3 custom-can-transform">
           <ul class="pure-menu-list mynewsize" style="" id="main_mainmenu">
-            {{ range (where .Site.Pages "Section" "headermenus") }}
+            {{ range .Site.Pages.ByWeight }}
+              {{ if eq .Type "menu" }}
+                <li class="pure-menu-item"><a href="/{{ .URL }}/" class="pure-menu-link mynew">{{ .Title }}</a></li>
+              {{end}}
+            {{ end }}
+            <!-- {{ range (where .Site.Pages.ByWeight "Section" "headermenus") }}
               {{ if eq .Title "Headermenus" }}
 
               {{ else }}
                   <li class="pure-menu-item"><a href="/{{ .URL }}/" class="pure-menu-link mynew">{{ .Title }}</a></li>
               {{ end }}
-            {{ end }}
+            {{ end }} -->
 
             {{ if .IsTranslated }}
               &middot; {{ i18n "translations" }}

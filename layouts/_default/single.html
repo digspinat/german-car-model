@@ -8,7 +8,11 @@
   {{ if (isset .Params "id") }}
     {{ partial .Params.id . }}
   {{ else }}
-    {{ .Content }}
+    {{ if eq .Title "Contact Us"}}
+      {{ partial "contactus.html" . }}
+    {{ else }}
+      {{ .Content }}
+    {{ end }}
   {{end}}
 
 </div>
