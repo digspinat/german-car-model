@@ -105,4 +105,29 @@ module.exports = (dato, root, i18n) => {
       });
     });
   });
+
+  // console.log(dato.blogs);
+  root.directory("content/blogs", (articlesDir) => {
+    i18n.availableLocales.forEach((locale) => {
+      i18n.withLocale(locale, () => {
+        dato.blogs.forEach((Blog, i) => {
+          articlesDir.createPost(
+            `${Blog.slugUrl}.${locale}.md`, "yaml", {
+              frontmatter: {
+                title: Blog.blogTitle,
+                type: "blog",
+                blogimage: Blog.thumbnailImage.toMap(),
+                imagegallery: Blog.blogGallery.toMap(),
+                templatename: Blog.chooseTemplate.templateName,
+                url: Blog.slugurl,
+                date: Blog.addDate
+              },
+              content: Blog.blogDesc
+            }
+          );
+        });
+      });
+    });
+  });
+
 }

@@ -12,6 +12,8 @@
       {{ partial "contactus.html" . }}
     {{ else if eq .Title "Blog" }}
       {{ partial "blog.html" . }}
+    {{ else  if eq .Type "blog" }}
+      {{ partial .Params.templatename . }}
     {{ else }}
       {{ .Content }}
     {{ end }}

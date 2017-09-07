@@ -1,0 +1,11 @@
+<article class="">
+  <div class="card" style="margin-top:20px;">
+    <h3 class="card-header">{{ .Title }}</h3>
+    <div class="card-block" style="padding:20px;">
+      <p class="card-text">{{ .Summary }}</p>
+      {{ if .Truncated }}
+        <a href="{{ .RelPermalink }}" class="btn btn-primary">Read More</a>
+      {{ end }}
+    </div>
+  </div>
+</article>
