@@ -6,7 +6,7 @@ copyright = "&copy; 2016. All rights reserved."
 canonifyurls = true
 paginate = 10
 DefaultContentLanguage = "en"
-disqusShortname = "disqus_pnTIDI85kl"
+disqusShortname = "german-car-manual"
 
 [taxonomy]
   tag = "tags"

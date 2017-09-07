@@ -120,7 +120,8 @@ module.exports = (dato, root, i18n) => {
                 imagegallery: Blog.blogGallery.toMap(),
                 templatename: Blog.chooseTemplate.templateName,
                 url: Blog.slugurl,
-                date: Blog.addDate
+                date: Blog.addDate,
+                comments: true
               },
               content: Blog.blogDesc
             }
