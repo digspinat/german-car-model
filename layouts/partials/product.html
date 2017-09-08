@@ -24,6 +24,7 @@
           query: '*',
           facets: ['manualBrand.en','manualSerie.en','manualYear.en','manualBodyType.en','manaulEngine.en','manualFuelType.en','manualType.en','manualPrice.en']
         }).then(res => {
+          console.log(res.facets);
           var BrandText = ""
           var SeriesText = ""
           var YearText = ""
