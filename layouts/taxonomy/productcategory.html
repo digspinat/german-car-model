@@ -165,7 +165,7 @@
         MainSearch.push(PriceType);
 
         index.search({
-          query: '*',
+          query: searchBrand,
           facetFilters: MainSearch,
           facets: ['manualBrand.en','manualSerie.en','manualYear.en','manualBodyType.en','manaulEngine.en','manualFuelType.en','manualType.en','manualPrice.en']
         }).then(res => {
@@ -354,7 +354,7 @@
         // console.log(SeriesArray);
 
         index.search({
-          query: '*',
+          query: searchBrand,
           facetFilters: MainSearch,
           facets: ['manualBrand.en','manualSerie.en','manualYear.en','manualBodyType.en','manaulEngine.en','manualFuelType.en','manualType.en','manualPrice.en']
         }).then(res => {
