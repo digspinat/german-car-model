@@ -12,7 +12,7 @@
   </div>
   <div class="pure-g">
     <div class="pure-u-7-24 my_rightbar">
-      <!-- {{ partial "filter.html" . }} -->
+      {{ partial "filter.html" . }}
     </div>
       <div class="pure-u-17-24">
         <div class="container">
@@ -24,6 +24,456 @@
         </div>
       </div>
   </div>
+  <form class="">
+    <input type="hidden" id="display_brand" value="{{ .Title }}">
+  </form>
+  <script type="text/javascript">
+  var client = algoliasearch("YZO8M6AZ6J", "847f24047332edf2bb6a0c1f0181b83e");
+  var index = client.initIndex('new_allcar');
+  
+    var searchBrand = $("#display_brand").val();
+    index.search({
+      query: searchBrand,
+      facets: ['manualBrand.en','manualSerie.en','manualYear.en','manualBodyType.en','manaulEngine.en','manualFuelType.en','manualType.en','manualPrice.en']
+    }).then(res => {
+      console.log(res.facets);
+      var BrandText = ""
+      var SeriesText = ""
+      var YearText = ""
+      var BodytypeText = ""
+      var EngineText = ""
+      var FueltypeText = ""
+      var ManualtypeText = ""
+      var PriceText = ""
+      var manualBrand = res.facets['manualBrand.en']
+      var manualSerie = res.facets['manualSerie.en']
+      var manualYear = res.facets['manualYear.en']
+      var manualBodyType = res.facets['manualBodyType.en']
+      var manaulEngine = res.facets['manaulEngine.en']
+      var manualFuelType = res.facets['manualFuelType.en']
+      var manualType = res.facets['manualType.en']
+      var manualPrice = res.facets['manualPrice.en']
+      $.each( manualBrand, function( key, value ) {
+        BrandText += "<input type='checkbox' value='"+key+"' class='brand mySearch'> "+key+" ("+value+")<br>"
+      });
+      $(".brand_my").html(BrandText);
+
+      $.each( manualSerie, function( key, value ) {
+        SeriesText += "<input type='checkbox' value='"+key+"' class='series mySearch'> "+key+" ("+value+")<br>"
+      });
+      $(".series_my").html(SeriesText);
+
+      $.each( manualYear, function( key, value ) {
+        YearText += "<input type='checkbox' value='"+key+"' class='year mySearch'> "+key+" ("+value+")<br>"
+      });
+      $(".year_my").html(YearText);
+
+      $.each( manualBodyType, function( key, value ) {
+        BodytypeText += "<input type='checkbox' value='"+key+"' class='bodytype mySearch'> "+key+" ("+value+")<br>"
+      });
+      $(".body_my").html(BodytypeText);
+
+      $.each( manaulEngine, function( key, value ) {
+        EngineText += "<input type='checkbox' value='"+key+"' class='engine mySearch'> "+key+" ("+value+")<br>"
+      });
+      $(".engine_my").html(EngineText);
+
+      $.each( manualFuelType, function( key, value ) {
+        FueltypeText += "<input type='checkbox' value='"+key+"' class='fueltype mySearch'> "+key+" ("+value+")<br>"
+      });
+      $(".fuel_my").html(FueltypeText);
+
+      $.each( manualType, function( key, value ) {
+        ManualtypeText += "<input type='checkbox' value='"+key+"' class='manual mySearch'> "+key+" ("+value+")<br>"
+      });
+      $(".manual_my").html(ManualtypeText);
+
+      $.each( manualPrice, function( key, value ) {
+        PriceText += "<input type='checkbox' value='"+key+"' class='price mySearch'> "+key+" ("+value+")<br>"
+      });
+      $(".price_my").html(PriceText);
+
+    });
+
+    $(document).on('click','.mySearch',function(){
+      if(this.checked){
+        var MainSearch = []
+        var BrandSearch = [], BrandArray = [];
+        var SeriesSearch = [], SeriesArray = [];
+        var YearSerach = [], YearArray = [];
+        var BodytypeSerach = [], BodytypeArray = [];
+        var EngineSearch = [], EngineArray = [];
+        var FuelType = [], FuelArray = [];
+        var ManualType = [], ManualArray = [];
+        var PriceType = [], PriceArray = [];
+
+        $('.brand').each(function(){
+          if (this.checked) {
+            BrandSearch.push("manualBrand.en:"+$(this).val())
+            BrandArray.push($(this).val())
+          }
+        });
+        $('.series').each(function(){
+          if (this.checked) {
+            SeriesSearch.push("manualSerie.en:"+$(this).val())
+            SeriesArray.push($(this).val())
+          }
+        });
+        $('.year').each(function(){
+          if (this.checked) {
+            YearSerach.push("manualYear.en:"+$(this).val())
+            YearArray.push($(this).val())
+          }
+        });
+        $('.bodytype').each(function(){
+          if (this.checked) {
+            BodytypeSerach.push("manualBodyType.en:"+$(this).val())
+            BodytypeArray.push($(this).val())
+          }
+        });
+        $('.engine').each(function(){
+          if (this.checked) {
+            EngineSearch.push("manaulEngine.en:"+$(this).val())
+            EngineArray.push($(this).val())
+          }
+        });
+        $('.fueltype').each(function(){
+          if (this.checked) {
+            FuelType.push("manualFuelType.en:"+$(this).val())
+            FuelArray.push($(this).val())
+          }
+        });
+        $('.manual').each(function(){
+          if (this.checked) {
+            ManualType.push("manualType.en:"+$(this).val())
+            ManualArray.push($(this).val())
+          }
+        });
+        $('.price').each(function(){
+          if (this.checked){
+            PriceType.push("manualPrice.en:"+$(this).val())
+            PriceArray.push($(this).val())
+          }
+        });
+        MainSearch.push(BrandSearch);
+        MainSearch.push(SeriesSearch);
+        MainSearch.push(YearSerach);
+        MainSearch.push(BodytypeSerach);
+        MainSearch.push(EngineSearch);
+        MainSearch.push(FuelType);
+        MainSearch.push(ManualType);
+        MainSearch.push(PriceType);
+
+        index.search({
+          query: '*',
+          facetFilters: MainSearch,
+          facets: ['manualBrand.en','manualSerie.en','manualYear.en','manualBodyType.en','manaulEngine.en','manualFuelType.en','manualType.en','manualPrice.en']
+        }).then(res => {
+          // console.log(res);
+          var BrandText = ""
+          var SeriesText = ""
+          var YearText = ""
+          var BodytypeText = ""
+          var EngineText = ""
+          var FueltypeText = ""
+          var ManualtypeText = ""
+          var PriceText = ""
+          var manualBrand = res.facets['manualBrand.en']
+          var manualSerie = res.facets['manualSerie.en']
+          var manualYear = res.facets['manualYear.en']
+          var manualBodyType = res.facets['manualBodyType.en']
+          var manaulEngine = res.facets['manaulEngine.en']
+          var manualFuelType = res.facets['manualFuelType.en']
+          var manualType = res.facets['manualType.en']
+          var manualPrice = res.facets['manualPrice.en']
+          $.each( manualBrand, function( key, value ) {
+            if($.inArray(key,BrandArray) != -1){
+              BrandText += "<input type='checkbox' checked='checked' value='"+key+"' class='brand mySearch'> "+key+" ("+value+")<br>"
+            }else{
+              BrandText += "<input type='checkbox' value='"+key+"' class='brand mySearch'> "+key+" ("+value+")<br>"
+            }
+          });
+          $(".brand_my").html(BrandText);
+
+          $.each( manualSerie, function( key, value ) {
+            if($.inArray(key,SeriesArray) != -1){
+              SeriesText += "<input type='checkbox' checked='checked' value='"+key+"' class='series mySearch'> "+key+" ("+value+")<br>"
+            }else{
+              SeriesText += "<input type='checkbox' value='"+key+"' class='series mySearch'> "+key+" ("+value+")<br>"
+            }
+          });
+          $(".series_my").html(SeriesText);
+
+          $.each( manualYear, function( key, value ) {
+            if($.inArray(key,YearArray) != -1){
+              YearText += "<input type='checkbox' checked='checked' value='"+key+"' class='year mySearch'> "+key+" ("+value+")<br>"
+            }else{
+              YearText += "<input type='checkbox' value='"+key+"' class='year mySearch'> "+key+" ("+value+")<br>"
+            }
+          });
+          $(".year_my").html(YearText);
+
+          $.each( manualBodyType, function( key, value ) {
+            if($.inArray(key,BodytypeArray) != -1){
+              BodytypeText += "<input type='checkbox' checked='checked' value='"+key+"' class='bodytype mySearch'> "+key+" ("+value+")<br>"
+            }else{
+              BodytypeText += "<input type='checkbox' value='"+key+"' class='bodytype mySearch'> "+key+" ("+value+")<br>"
+            }
+          });
+          $(".body_my").html(BodytypeText);
+
+          $.each( manaulEngine, function( key, value ) {
+            if($.inArray(key,EngineArray) != -1){
+              EngineText += "<input type='checkbox' checked='checked' value='"+key+"' class='engine mySearch'> "+key+" ("+value+")<br>"
+            }else{
+              EngineText += "<input type='checkbox' value='"+key+"' class='engine mySearch'> "+key+" ("+value+")<br>"
+            }
+          });
+          $(".engine_my").html(EngineText);
+
+          $.each( manualFuelType, function( key, value ) {
+            if($.inArray(key,FuelArray) != -1){
+              FueltypeText += "<input type='checkbox' checked='checked' value='"+key+"' class='fueltype mySearch'> "+key+" ("+value+")<br>"
+            }else{
+              FueltypeText += "<input type='checkbox' value='"+key+"' class='fueltype mySearch'> "+key+" ("+value+")<br>"
+            }
+          });
+          $(".fuel_my").html(FueltypeText);
+
+          $.each( manualType, function( key, value ) {
+            if($.inArray(key,ManualArray) != -1){
+              ManualtypeText += "<input type='checkbox' checked='checked' value='"+key+"' class='manual mySearch'> "+key+" ("+value+")<br>"
+            }else{
+              ManualtypeText += "<input type='checkbox' value='"+key+"' class='manual mySearch'> "+key+" ("+value+")<br>"
+            }
+          });
+          $(".manual_my").html(ManualtypeText);
+
+          $.each( manualPrice, function( key, value ){
+            if($.inArray(key,PriceArray) != -1){
+              PriceText += "<input type='checkbox' checked='checked' value='"+key+"' class='price mySearch'> "+key+" ("+value+")<br>"
+            }else{
+              PriceText += "<input type='checkbox' value='"+key+"' class='price mySearch'> "+key+" ("+value+")<br>"
+            }
+          });
+          $(".price_my").html(PriceText);
+          var prodcuct = ""
+          $.each(res.hits, function( i, val ){
+            prodcuct += "<div class='col-md-4'>"+
+                "<div class='ibox'>"+
+                    "<div class='ibox-content product-box'>"+
+                        "<div class='product-imitation'>"+
+                            "<img src='https://www.datocms-assets.com"+val['manualImage'].path+"' alt='' height='200px;' width='200px;'>"+
+                        "</div>"+
+                        "<div class='product-desc'>"+
+                            "<span class='product-price'>"+
+                                "Price: $"+val['manualPrice'].en+""+
+                            "</span>"+
+                            "<small class='text-muted'></small>"+
+                            "<a href='/manual/"+val['manualId']+"' class='product-name'>"+val['manualTitle'].en+"</a>"+
+                            "<div class='m-t text-righ'>"+
+                                "<a href='/manual/"+val['manualId']+"' class='btn btn-xs btn-outline btn-primary'>Info <i class='fa fa-long-arrow-right'></i></a>"+
+                            "</div>"+
+                        "</div>"+
+                    "</div>"+
+                "</div>"+
+            "</div>";
+          });
+          $("#productdata").html(prodcuct);
+
+        })
+      }else{
+        $(this).removeAttr( "checked" )
+        var MainSearch = []
+        var BrandSearch = [], BrandArray = [];
+        var SeriesSearch = [], SeriesArray = [];
+        var YearSerach = [], YearArray = [];
+        var BodytypeSerach = [], BodytypeArray = [];
+        var EngineSearch = [], EngineArray = [];
+        var FuelType = [], FuelArray = [];
+        var ManualType = [], ManualArray = [];
+        var PriceType = [], PriceArray = [];
+
+        // console.log(SeriesArray);
+        $('.brand').each(function(){
+          if (this.checked) {
+            BrandSearch.push("manualBrand.en:"+$(this).val())
+            BrandArray.push($(this).val())
+          }
+        });
+        $('.series').each(function(){
+          if (this.checked) {
+            SeriesSearch.push("manualSerie.en:"+$(this).val())
+            SeriesArray.push($(this).val())
+          }
+        });
+        $('.year').each(function(){
+          if (this.checked) {
+            YearSerach.push("manualYear.en:"+$(this).val())
+            YearArray.push($(this).val())
+          }
+        });
+        $('.bodytype').each(function(){
+          if (this.checked) {
+            BodytypeSerach.push("manualBodyType.en:"+$(this).val())
+            BodytypeArray.push($(this).val())
+          }
+        });
+        $('.engine').each(function(){
+          if (this.checked) {
+            EngineSearch.push("manaulEngine.en:"+$(this).val())
+            EngineArray.push($(this).val())
+          }
+        });
+        $('.fueltype').each(function(){
+          if (this.checked) {
+            FuelType.push("manualFuelType.en:"+$(this).val())
+            FuelArray.push($(this).val())
+          }
+        });
+        $('.manual').each(function(){
+          if (this.checked) {
+            ManualType.push("manualType.en:"+$(this).val())
+            ManualArray.push($(this).val())
+          }
+        });
+        $('.price').each(function(){
+          if (this.checked){
+            PriceType.push("manualPrice.en:"+$(this).val())
+            PriceArray.push($(this).val())
+          }
+        });
+        MainSearch.push(BrandSearch);
+        MainSearch.push(SeriesSearch);
+        MainSearch.push(YearSerach);
+        MainSearch.push(BodytypeSerach);
+        MainSearch.push(EngineSearch);
+        MainSearch.push(FuelType);
+        MainSearch.push(ManualType);
+        MainSearch.push(PriceType);
+        // console.log(SeriesArray);
+
+        index.search({
+          query: '*',
+          facetFilters: MainSearch,
+          facets: ['manualBrand.en','manualSerie.en','manualYear.en','manualBodyType.en','manaulEngine.en','manualFuelType.en','manualType.en','manualPrice.en']
+        }).then(res => {
+          // console.log(res);
+          var BrandText = ""
+          var SeriesText = ""
+          var YearText = ""
+          var BodytypeText = ""
+          var EngineText = ""
+          var FueltypeText = ""
+          var ManualtypeText = ""
+          var PriceText = ""
+          var manualBrand = res.facets['manualBrand.en']
+          var manualSerie = res.facets['manualSerie.en']
+          var manualYear = res.facets['manualYear.en']
+          var manualBodyType = res.facets['manualBodyType.en']
+          var manaulEngine = res.facets['manaulEngine.en']
+          var manualFuelType = res.facets['manualFuelType.en']
+          var manualType = res.facets['manualType.en']
+          var manualPrice = res.facets['manualPrice.en']
+          $.each( manualBrand, function( key, value ) {
+            if($.inArray(key,BrandArray) != -1){
+              BrandText += "<input type='checkbox' checked='checked' value='"+key+"' class='brand mySearch'> "+key+" ("+value+")<br>"
+            }else{
+              BrandText += "<input type='checkbox' value='"+key+"' class='brand mySearch'> "+key+" ("+value+")<br>"
+            }
+          });
+          $(".brand_my").html(BrandText);
+
+          $.each( manualSerie, function( key, value ) {
+            if($.inArray(key,SeriesArray) != -1){
+              SeriesText += "<input type='checkbox' checked='checked' value='"+key+"' class='series mySearch'> "+key+" ("+value+")<br>"
+            }else{
+              SeriesText += "<input type='checkbox' value='"+key+"' class='series mySearch'> "+key+" ("+value+")<br>"
+            }
+          });
+          $(".series_my").html(SeriesText);
+
+          $.each( manualYear, function( key, value ) {
+            if($.inArray(key,YearArray) != -1){
+              YearText += "<input type='checkbox' checked='checked' value='"+key+"' class='year mySearch'> "+key+" ("+value+")<br>"
+            }else{
+              YearText += "<input type='checkbox' value='"+key+"' class='year mySearch'> "+key+" ("+value+")<br>"
+            }
+          });
+          $(".year_my").html(YearText);
+
+          $.each( manualBodyType, function( key, value ) {
+            if($.inArray(key,BodytypeArray) != -1){
+              BodytypeText += "<input type='checkbox' checked='checked' value='"+key+"' class='bodytype mySearch'> "+key+" ("+value+")<br>"
+            }else{
+              BodytypeText += "<input type='checkbox' value='"+key+"' class='bodytype mySearch'> "+key+" ("+value+")<br>"
+            }
+          });
+          $(".body_my").html(BodytypeText);
+
+          $.each( manaulEngine, function( key, value ) {
+            if($.inArray(key,EngineArray) != -1){
+              EngineText += "<input type='checkbox' checked='checked' value='"+key+"' class='engine mySearch'> "+key+" ("+value+")<br>"
+            }else{
+              EngineText += "<input type='checkbox' value='"+key+"' class='engine mySearch'> "+key+" ("+value+")<br>"
+            }
+          });
+          $(".engine_my").html(EngineText);
+
+          $.each( manualFuelType, function( key, value ) {
+            if($.inArray(key,FuelArray) != -1){
+              FueltypeText += "<input type='checkbox' checked='checked' value='"+key+"' class='fueltype mySearch'> "+key+" ("+value+")<br>"
+            }else{
+              FueltypeText += "<input type='checkbox' value='"+key+"' class='fueltype mySearch'> "+key+" ("+value+")<br>"
+            }
+          });
+          $(".fuel_my").html(FueltypeText);
+
+          $.each( manualType, function( key, value ) {
+            if($.inArray(key,ManualArray) != -1){
+              ManualtypeText += "<input type='checkbox' checked='checked' value='"+key+"' class='manual mySearch'> "+key+" ("+value+")<br>"
+            }else{
+              ManualtypeText += "<input type='checkbox' value='"+key+"' class='manual mySearch'> "+key+" ("+value+")<br>"
+            }
+          });
+          $(".manual_my").html(ManualtypeText);
+
+          $.each( manualPrice, function( key, value ){
+            if($.inArray(key,PriceArray) != -1){
+              PriceText += "<input type='checkbox' checked='checked' value='"+key+"' class='price mySearch'> "+key+" ("+value+")<br>"
+            }else{
+              PriceText += "<input type='checkbox' value='"+key+"' class='price mySearch'> "+key+" ("+value+")<br>"
+            }
+          });
+          $(".price_my").html(PriceText);
+          var prodcuct = ""
+          $.each(res.hits, function( i, val ){
+            prodcuct += "<div class='col-md-4'>"+
+                "<div class='ibox'>"+
+                    "<div class='ibox-content product-box'>"+
+                        "<div class='product-imitation'>"+
+                            "<img src='https://www.datocms-assets.com"+val['manualImage'].path+"' alt='' height='200px;' width='200px;'>"+
+                        "</div>"+
+                        "<div class='product-desc'>"+
+                            "<span class='product-price'>"+
+                                "Price: $"+val['manualPrice'].en+""+
+                            "</span>"+
+                            "<small class='text-muted'></small>"+
+                            "<a href='/manual/"+val['manualId']+"' class='product-name'>"+val['manualTitle'].en+"</a>"+
+                            "<div class='m-t text-righ'>"+
+                                "<a href='/manual/"+val['manualId']+"' class='btn btn-xs btn-outline btn-primary'>Info <i class='fa fa-long-arrow-right'></i></a>"+
+                            "</div>"+
+                        "</div>"+
+                    "</div>"+
+                "</div>"+
+            "</div>";
+          });
+          $("#productdata").html(prodcuct);
+
+        })
+      }
+    });
+  </script>
 </div>
 
 {{ partial "footer.html" . }}
