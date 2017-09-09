@@ -34,7 +34,7 @@
       </div>
   </div>
 </div>
-<div class="pure-menu pure-menu-horizontal pure-menu-scrollable myanothermenu">
+<div class="pure-menu pure-menu-horizontal pure-menu-scrollable myanothermenu myborder">
     <ul class="pure-menu-list" id="second_mainmenu">
         <!-- <li class="pure-menu-item mylink"><a href="#" class="pure-menu-link">Home</a></li> -->
 
@@ -68,10 +68,10 @@
         var Brand = ""
         $.each(res.hits, function( i, val ){
           if(val['manualBrand'].en == "BMW"){
-            Brand += "<li class='pure-menu-item'><a href='/productcategories/bmw/' style='color:black;' class='pure-menu-link mylink'>"+val['manualBrand'].en+"</a></li>"
+            Brand += "<li class='pure-menu-item mylink'><a href='/productcategories/bmw/' class='pure-menu-link'>"+val['manualBrand'].en+"</a></li>"
           }
           if(val['manualBrand'].en == "volkswagan"){
-            Brand += "<li class='pure-menu-item'><a href='/productcategories/volkswagan/' style='color:black;' class='pure-menu-link mylink'>"+val['manualBrand'].en+"</a></li>"
+            Brand += "<li class='pure-menu-item mylink'><a href='/productcategories/volkswagan/' class='pure-menu-link'>"+val['manualBrand'].en+"</a></li>"
           }
         });
         // alert(Brand);

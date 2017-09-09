@@ -1,3 +1,10 @@
+/*Border CSS*/
+.myborder{
+    border: 1px solid black;
+    border-radius: 5px;
+    padding: 10px;
+}
+
 /*Product CSS*/
 /*
 body{margin-top:20px;
