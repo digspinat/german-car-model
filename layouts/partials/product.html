@@ -22,6 +22,7 @@
       <script type="text/javascript">
         index.search({
           query: '*',
+          hitsPerPage: 100,
           facets: ['manualBrand.en','manualSerie.en','manualYear.en','manualBodyType.en','manaulEngine.en','manualFuelType.en','manualType.en','manualPrice.en']
         }).then(res => {
           console.log(res.facets);
@@ -85,6 +86,7 @@
 
         $(document).on('click','.mySearch',function(){
           if(this.checked){
+            alert("ok");
             var MainSearch = []
             var BrandSearch = [], BrandArray = [];
             var SeriesSearch = [], SeriesArray = [];
@@ -155,9 +157,10 @@
             index.search({
               query: '*',
               facetFilters: MainSearch,
+              hitsPerPage: 100,
               facets: ['manualBrand.en','manualSerie.en','manualYear.en','manualBodyType.en','manaulEngine.en','manualFuelType.en','manualType.en','manualPrice.en']
             }).then(res => {
-              // console.log(res);
+              console.log(res);
               var BrandText = ""
               var SeriesText = ""
               var YearText = ""
@@ -344,9 +347,10 @@
             index.search({
               query: '*',
               facetFilters: MainSearch,
+              hitsPerPage: 100,
               facets: ['manualBrand.en','manualSerie.en','manualYear.en','manualBodyType.en','manaulEngine.en','manualFuelType.en','manualType.en','manualPrice.en']
             }).then(res => {
-              // console.log(res);
+              console.log(res);
               var BrandText = ""
               var SeriesText = ""
               var YearText = ""

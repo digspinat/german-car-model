@@ -17,6 +17,11 @@
   },
   "homepage": "https://github.com/Miteshpatel25/german-car-model#readme",
   "devDependencies": {
-    "datocms-client": "^0.3.27"
+    "datocms-client": "^0.3.32"
+  },
+  "dependencies": {
+    "jquery": "^3.2.1",
+    "jsonfile": "^3.0.1",
+    "spike-datocms": "^2.2.1"
   }
 }

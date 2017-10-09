@@ -32,11 +32,17 @@
   var index = client.initIndex('new_allcar');
 
     var searchBrand = $("#display_brand").val();
+    var MainSearch = []
+    var BrandSearch = [], BrandArray = [];
+    BrandSearch.push("manualBrand.en:"+searchBrand)
+    MainSearch.push(BrandSearch);
     index.search({
       query: searchBrand,
+      hitsPerPage: 100,
+      facetFilters: MainSearch,
       facets: ['manualBrand.en','manualSerie.en','manualYear.en','manualBodyType.en','manaulEngine.en','manualFuelType.en','manualType.en','manualPrice.en']
     }).then(res => {
-      console.log(res.facets);
+      console.log(res);
       var BrandText = ""
       var SeriesText = ""
       var YearText = ""
@@ -92,6 +98,30 @@
         PriceText += "<input type='checkbox' value='"+key+"' class='price mySearch'> "+key+" ("+value+")<br>"
       });
       $(".price_my").html(PriceText);
+
+      var prodcuct = ""
+      $.each(res.hits, function( i, val ){
+        prodcuct += "<div class='col-md-4'>"+
+            "<div class='ibox'>"+
+                "<div class='ibox-content product-box'>"+
+                    "<div class='product-imitation'>"+
+                        "<img src='https://www.datocms-assets.com"+val['manualImage'].path+"' alt='' height='200px;' width='200px;'>"+
+                    "</div>"+
+                    "<div class='product-desc'>"+
+                        "<span class='product-price'>"+
+                            "Price: $"+val['manualPrice'].en+""+
+                        "</span>"+
+                        "<small class='text-muted'></small>"+
+                        "<a href='/manual/"+val['manualId']+"' class='product-name'>"+val['manualTitle'].en+"</a>"+
+                        "<div class='m-t text-righ'>"+
+                            "<a href='/manual/"+val['manualId']+"' class='btn btn-xs btn-outline btn-primary'>Info <i class='fa fa-long-arrow-right'></i></a>"+
+                        "</div>"+
+                    "</div>"+
+                "</div>"+
+            "</div>"+
+        "</div>";
+      });
+      $("#productdata").html(prodcuct);
 
     });
 
@@ -163,7 +193,6 @@
         MainSearch.push(FuelType);
         MainSearch.push(ManualType);
         MainSearch.push(PriceType);
-
         index.search({
           query: searchBrand,
           facetFilters: MainSearch,

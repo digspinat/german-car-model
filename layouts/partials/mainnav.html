@@ -73,6 +73,9 @@
           if(val['manualBrand'].en == "volkswagan"){
             Brand += "<li class='pure-menu-item mylink'><a href='/productcategories/volkswagan/' class='pure-menu-link'>"+val['manualBrand'].en+"</a></li>"
           }
+          if(val['manualBrand'].en == "Audi"){
+            Brand += "<li class='pure-menu-item mylink'><a href='/productcategories/audi/' class='pure-menu-link'>"+val['manualBrand'].en+"</a></li>"
+          }
         });
         // alert(Brand);
         $("#second_mainmenu").append(Brand);
